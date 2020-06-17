@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<template>
+<div>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Dashboard</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
@@ -16,14 +15,6 @@
 </div>
 <div class="card shadow-sm">
   <div class="card-body">
-    @if (session('status'))
-      <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-      </div>
-    @endif
-    <div class="form-group">
-      Bienvenido {{ Auth::user()->name }}!
-    </div>
     <div class="row">
       <div class="col">
         <div class="card text-white bg-primary mb-3 text-center" style="max-width: 18rem;">
@@ -64,4 +55,11 @@
     </div>
   </div>
 </div>
-@endsection
+</div>
+</template>
+
+<script>
+export default {
+
+}
+</script>

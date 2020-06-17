@@ -30,8 +30,9 @@
                     @include('layouts.sidebar')
                 @endauth
                 <div class="col">
-                    <main class="py-4">
-                        @yield('content')
+                    <main class="">
+                        <!-- @yield('content') -->
+                        <router-view></router-view>
                     </main>
                 </div>
             </div>
