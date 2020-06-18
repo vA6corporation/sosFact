@@ -13,7 +13,7 @@ class CreateHeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('headers', function (Blueprint $table) {
+        Schema::create('SF_DOC_ELECTRONICO', function (Blueprint $table) {
             $table->bigIncrements('id'); //primary key 
             $table->integer('id_doc_electronico'); 
             $table->string('serieNumero', 13);
@@ -21,14 +21,14 @@ class CreateHeadersTable extends Migration
             $table->date('fechaEmision');
             $table->string('numeroDocIdentidadEmisor', 100);
             $table->integer('tipoDocIdentidadEmisor');
-            $table->string('numeroDocIdentidadReceptor', 100); //foreign key with companies table 
+            $table->string('numeroDocIdentidadReceptor', 100);//foreign key with companies table 
             $table->foreign('numeroDocIdentidadReceptor')->references('ruc')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->string('razonSocialReceptor', 450);
             $table->string('direccionReceptor', 450);
             $table->string('correoReceptor', 450);
             $table->integer('tipoDocIdentidadReceptor');
             $table->string('telefono', 11);
-            $table->unsignedBigInteger('idCliente'); //foreign key with clients table 
+            $table->unsignedBigInteger('idCliente'); //foreign key with clients table
             $table->foreign('idCliente')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->double('totalOPGravadas', 26, 2);
             $table->double('totalOPExoneradas', 26, 2);
@@ -61,6 +61,6 @@ class CreateHeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('headers');
+        Schema::dropIfExists('SF_DOC_ELECTRONICO');
     }
 }

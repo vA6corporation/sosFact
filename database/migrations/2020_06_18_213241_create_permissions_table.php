@@ -15,9 +15,9 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('company_id'); //foreign key with companies table
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id'); //foreign key with users table 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('facturas');
             $table->boolean('boletas');

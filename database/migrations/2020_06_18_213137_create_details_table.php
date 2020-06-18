@@ -13,10 +13,10 @@ class CreateDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('details', function (Blueprint $table) {
+        Schema::create('SF_DOC_ELECTRONICO_DET', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_doc_electronico'); //foreign key with table headers
-            $table->foreign('id_doc_electronico')->references('id')->on('headers')->onDelete('cascade');
+            $table->foreign('id_doc_electronico')->references('id')->on('SF_DOC_ELECTRONICO')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('ordenItem');
             $table->integer('codigoProductoItem');
             $table->string('descripcionItem', 150);
@@ -50,6 +50,6 @@ class CreateDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('details');
+        Schema::dropIfExists('SF_DOC_ELECTRONICO_DET');
     }
 }
