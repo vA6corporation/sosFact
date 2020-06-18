@@ -14,9 +14,9 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
-            $table->integer('id_doc_electronico');  //foreign  key 
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_doc_electronico'); //foreign key with table headers
+            $table->foreign('id_doc_electronico')->references('id')->on('headers')->onDelete('cascade');
             $table->integer('ordenItem');
             $table->integer('codigoProductoItem');
             $table->string('descripcionItem', 150);
@@ -39,7 +39,6 @@ class CreateDetailsTable extends Migration
             $table->double('montoUnitarioBolsasItem', 26, 2);
             $table->double('importeBolsasItem', 26, 2);
             $table->integer('iddetpedido');
-           // $table->foreign('id_doc_electronico')->references('id')->on('headers')->onDelete('cascade');
             $table->timestamps();
         });
     }

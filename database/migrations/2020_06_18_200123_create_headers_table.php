@@ -14,21 +14,22 @@ class CreateHeadersTable extends Migration
     public function up()
     {
         Schema::create('headers', function (Blueprint $table) {
-            $table->id(); //primary key 
-            $table->integer('user_id');
+            $table->bigIncrements('id'); //primary key 
             $table->integer('id_doc_electronico'); 
             $table->string('serieNumero', 13);
             $table->integer('tipoDocumento');
             $table->date('fechaEmision');
             $table->string('numeroDocIdentidadEmisor', 100);
             $table->integer('tipoDocIdentidadEmisor');
-            $table->string('numeroDocIdentidadReceptor', 100);
+            $table->string('numeroDocIdentidadReceptor', 100); //foreign key with companies table 
+            $table->foreign('numeroDocIdentidadReceptor')->references('ruc')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->string('razonSocialReceptor', 450);
             $table->string('direccionReceptor', 450);
             $table->string('correoReceptor', 450);
             $table->integer('tipoDocIdentidadReceptor');
             $table->string('telefono', 11);
-            $table->integer('idCliente'); //id
+            $table->unsignedBigInteger('idCliente'); //foreign key with clients table 
+            $table->foreign('idCliente')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->double('totalOPGravadas', 26, 2);
             $table->double('totalOPExoneradas', 26, 2);
             $table->double('totalOPNoGravadas', 26, 2);
@@ -44,7 +45,7 @@ class CreateHeadersTable extends Migration
             $table->double('sumatoriaImpuestoBolsas', 26, 2);
             $table->string('tipoMoneda', 100);
             $table->string('codigoPaisReceptor', 100);
-            $table->integer('codigoTipoOperacion');
+            $table->integer('codigoTipoOperacion');   
             $table->string('montoEnLetras', 150);
             $table->integer('idPedido');
             $table->integer('Doc_Estado');

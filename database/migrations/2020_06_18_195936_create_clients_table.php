@@ -14,8 +14,9 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('tipoDocumento', ['RUC', 'DNI', 'PASAPORTE', 'CARNETEXT', 'OTROS'])->default('DNI');
             $table->string('nombres', 240);
             $table->string('documento', 11);
@@ -24,11 +25,7 @@ class CreateClientsTable extends Migration
             $table->string('celular', 12)->nullable();
             $table->string('email', 120)->nullable();
             $table->date('fechaNacimiento')->nullable();
-            $table->enum('genero', ['HOMBRE', 'MUJER', NULL])->nullable();
-
-
-
-        
+            $table->enum('genero', ['HOMBRE', 'MUJER', NULL])->nullable();        
             $table->timestamps();
         });
     }
