@@ -3,7 +3,7 @@
 <items-modal v-model="items"></items-modal>
 <form @submit.prevent="submit">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-3 mb-3 border-bottom">
-    <h1 class="h2 mb-0">Nueva Factura</h1>
+    <h1 class="h2 mb-0">Nueva Boleta</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <!-- <div class="btn-group mr-2">
         <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -18,9 +18,20 @@
   <div class="row">
     <div class="col-md-8 mx-auto">
       <div class="row form-group">
-        <label for="" class="col-md-3 col-form-label">N de RUC del cliente</label>
+        <label for="" class="col-md-3 col-form-label">Tipo de documento</label>
         <div class="col">
-          <input type="text" class="form-control" placeholder="N de RUC del cliente" maxlength="11" minlength="11" required>
+          <select name="" id="" class="custom-select">
+            <option value="DNI">DNI</option>
+            <option value="RUC">RUC</option>
+            <option value="CARNETEXT">CARNET DE EXT.</option>
+            <option value="OTROS">OTROS</option>
+          </select>
+        </div>
+      </div>
+      <div class="row form-group">
+        <label for="" class="col-md-3 col-form-label">N de Documento</label>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="N de documento del cliente" maxlength="11" minlength="11" required>
         </div>
       </div>
       <hr>

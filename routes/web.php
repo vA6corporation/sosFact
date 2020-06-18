@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('{any}', function () {
-    return view('home');
+    error_log(Auth::check());
+    if (Auth::check()) {
+        return view('app');
+    } else {
+        return view('auth.login');
+    }
 })->where('any','.*');

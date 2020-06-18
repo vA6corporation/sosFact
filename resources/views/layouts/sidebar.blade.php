@@ -2,7 +2,7 @@
     <div class="sidebar-sticky pt-3">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <router-link class="nav-link active" to="/">
+          <router-link class="nav-link active" to="/home">
             <feather type="home" class="feather-md"></feather>
             Dashboard
           </router-link>
