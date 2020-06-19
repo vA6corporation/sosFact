@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relacion entre modelos 
+    public function permission(){
+
+        return $this->hasOne('App\Permission', 'user_id');
+    }
 }

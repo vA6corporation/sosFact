@@ -44,4 +44,11 @@ class Header extends Model
         'Doc_Estado',
         'Doc_id_cierre',
     ];
+
+    //relacion entre modelos 
+    public function details(){
+
+        return $this->hasMany('App\Detail', 'id_doc_electronico');
+    }
+    
 }
