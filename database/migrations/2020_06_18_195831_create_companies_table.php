@@ -16,15 +16,15 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ruc', 100)->unique();
-            $table->string('razonSocial', 240);
-            $table->string('nombreComercial', 240);
-            $table->string('domicilioFiscal', 450);
-            $table->string('email', 120)->nullable();
-            $table->string('codigoUbigeo', 6);
-            $table->string('departamento', 50);
-            $table->string('provincia', 50);
-            $table->string('distrito', 50);
-            $table->string('codigoPais', 2);
+            $table->string('razonSocial', 240)->default('Razon social');
+            $table->string('nombreComercial', 240)->default('Nombre comercial');
+            $table->string('domicilioFiscal', 450)->default('Domicilio fiscal');
+            //$table->string('email', 120)->nullable();
+            $table->string('codigoUbigeo', 6)->default('150101');
+            $table->string('departamento', 50)->default('lima');
+            $table->string('provincia', 50)->default('lima');
+            $table->string('distrito', 50)->default('lima');
+            $table->string('codigoPais', 2)->default('PE');
             $table->timestamps();
         });
     }
