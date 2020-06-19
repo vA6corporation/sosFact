@@ -4,7 +4,7 @@
       <div class="col-3"></div>
     </div>
     <a class="navbar-brand" href="{{ url('/') }}">
-    <h2 class="mb-0">
+    <h2 class="mb-0 font-weight-bold">
       {{ config('app.name', 'Laravel') }}
     </h2>
     </a>
