@@ -20,6 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('clients/{ruc}/byRuc', 'ClientController@byRuc');
+Route::get('clients/{dni}/byDni', 'ClientController@byDni');
+
 Route::get('{any}', function () {
     error_log(Auth::check());
     if (Auth::check()) {

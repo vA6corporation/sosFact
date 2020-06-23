@@ -109,6 +109,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -116,6 +187,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      tipeDocument: 'DNI',
+      client: {},
       invoice: {},
       items: [],
       item: {}
@@ -134,6 +207,38 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       console.log('enviamos');
     },
+    findClientByRuc: function findClientByRuc() {
+      var _this = this;
+
+      console.log(this.client.documento);
+
+      if (this.client.documento.length == 11) {
+        this.$http.get("/clients/".concat(this.client.documento, "/byRuc")).then(function (res) {
+          console.log(res);
+          _this.client = res.body.client;
+        }, function (res) {
+          console.log(res);
+          alert(res.body.err);
+        });
+      }
+    },
+    findClientByDni: function findClientByDni() {
+      var _this2 = this;
+
+      console.log(this.client.documento);
+
+      if (this.client.documento.length == 8) {
+        this.$http.get("/clients/".concat(this.client.documento, "/byDni")).then(function (res) {
+          console.log(res);
+          _this2.client = res.body.client;
+        }, function (res) {
+          console.log(res);
+          alert(res.body.err);
+        });
+      }
+    },
+    findClientByCarnetExt: function findClientByCarnetExt() {},
+    findClientByOtros: function findClientByOtros() {},
     addProduct: function addProduct() {
       this.item.precioUnitario = null;
       this.item.cantidad = null;
@@ -191,7 +296,9 @@ var render = function() {
                 "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-3 mb-3 border-bottom"
             },
             [
-              _c("h1", { staticClass: "h2 mb-0" }, [_vm._v("Nueva Boleta")]),
+              _c("h1", { staticClass: "h2 mb-0" }, [
+                _vm._v("Nueva Boleta Sandra")
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "btn-toolbar mb-2 mb-md-0" }, [
                 _c(
@@ -212,11 +319,347 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-8 mx-auto" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "row form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-3 col-form-label",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("Tipo de documento")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.tipeDocument,
+                          expression: "tipeDocument"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { name: "", id: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.tipeDocument = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "DNI" } }, [
+                        _vm._v("DNI")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "RUC" } }, [
+                        _vm._v("RUC")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "CARNETEXT" } }, [
+                        _vm._v("CARNET DE EXT.")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "OTROS" } }, [
+                        _vm._v("OTROS")
+                      ])
+                    ]
+                  )
+                ])
+              ]),
               _vm._v(" "),
-              _vm._m(1),
+              _c("div", { staticClass: "row form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-3 col-form-label",
+                    attrs: { for: "" }
+                  },
+                  [_vm._v("N de Documento")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col" }, [
+                  _vm.tipeDocument == "DNI"
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.client.documento,
+                            expression: "client.documento"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "N de DNI",
+                          maxlength: "8",
+                          minlength: "8",
+                          required: ""
+                        },
+                        domProps: { value: _vm.client.documento },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.client,
+                                "documento",
+                                $event.target.value
+                              )
+                            },
+                            _vm.findClientByDni
+                          ]
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.tipeDocument == "RUC"
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.client.documento,
+                            expression: "client.documento"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "N de RUC",
+                          maxlength: "11",
+                          minlength: "11",
+                          required: ""
+                        },
+                        domProps: { value: _vm.client.documento },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.client,
+                                "documento",
+                                $event.target.value
+                              )
+                            },
+                            _vm.findClientByRuc
+                          ]
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.tipeDocument == "CARNETEXT"
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.client.documento,
+                            expression: "client.documento"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "N de Carnet Extranjeria",
+                          maxlength: "9",
+                          minlength: "9",
+                          required: ""
+                        },
+                        domProps: { value: _vm.client.documento },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.client,
+                                "documento",
+                                $event.target.value
+                              )
+                            },
+                            _vm.findClientByCarnetExt
+                          ]
+                        }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.tipeDocument == "OTROS"
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.client.documento,
+                            expression: "client.documento"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "N del cliente",
+                          maxlength: "11",
+                          minlength: "11",
+                          required: ""
+                        },
+                        domProps: { value: _vm.client.documento },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.client,
+                                "documento",
+                                $event.target.value
+                              )
+                            },
+                            _vm.findClientByOtros
+                          ]
+                        }
+                      })
+                    : _vm._e()
+                ])
+              ]),
               _vm._v(" "),
               _c("hr"),
+              _vm._v(" "),
+              _c("table", { staticClass: "table" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v("\r\n              Nombres:\r\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.nombres) +
+                          "\r\n            "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v("\r\n              RUC:\r\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.documento) +
+                          "\r\n            "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v("\r\n              Direccion:\r\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.direccion) +
+                          "\r\n            "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v("\r\n              Puntos:\r\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.puntos) +
+                          "\r\n            "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v("\r\n              Celular:\r\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.celular) +
+                          "\r\n            "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v("\r\n              Email:\r\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.email) +
+                          "\r\n            "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              Fecha de Nacimiento:\r\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.fechaNacimiento) +
+                          "\r\n            "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v("\r\n              Genero:\r\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\r\n              " +
+                          _vm._s(_vm.client.genero) +
+                          "\r\n            "
+                      )
+                    ])
+                  ])
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c(
@@ -465,63 +908,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row form-group" }, [
-      _c(
-        "label",
-        { staticClass: "col-md-3 col-form-label", attrs: { for: "" } },
-        [_vm._v("Tipo de documento")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "select",
-          { staticClass: "custom-select", attrs: { name: "", id: "" } },
-          [
-            _c("option", { attrs: { value: "DNI" } }, [_vm._v("DNI")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "RUC" } }, [_vm._v("RUC")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "CARNETEXT" } }, [
-              _vm._v("CARNET DE EXT.")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "OTROS" } }, [_vm._v("OTROS")])
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row form-group" }, [
-      _c(
-        "label",
-        { staticClass: "col-md-3 col-form-label", attrs: { for: "" } },
-        [_vm._v("N de Documento")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            placeholder: "N de documento del cliente",
-            maxlength: "11",
-            minlength: "11",
-            required: ""
-          }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

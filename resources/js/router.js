@@ -7,7 +7,7 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    { path: '/home', name: 'home', component: () => import('./views/home/Home') },
+    { path: '/home', component: () => import('./views/home/Home') },
     { path: '/invoices', name: 'invoices', component: () => import('./views/invoice/Invoices') },
     { path: '/invoices/create', name: 'invoices', component: () => import('./views/invoice/Create') },
     { path: '/tickets', name: 'tickets', component: () => import('./views/ticket/Tickets') },

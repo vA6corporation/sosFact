@@ -8,42 +8,6 @@
             {{ item.label }}
           </router-link>
         </li>
-        <!-- <li class="nav-item">
-          <router-link class="nav-link" to="/invoices">
-            <feather type="file" class="feather-md"></feather>
-            Facturas
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <feather type="file" class="feather-md"></feather>
-            Boletas
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <feather type="file" class="feather-md"></feather>
-            Notas de Credito
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <feather type="file" class="feather-md"></feather>
-            Notas de Debito
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <feather type="file" class="feather-md"></feather>
-            Guias de Remision
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <feather type="tool" class="feather-md"></feather>
-            Ajustes
-          </a>
-        </li> -->
       </ul>
     </div>
   </nav>
@@ -65,3 +29,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>>

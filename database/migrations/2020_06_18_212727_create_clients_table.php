@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('nombres', 240);
             $table->string('documento', 11);
             $table->string('direccion', 240)->nullable();
-            $table->integer('puntos');
+            $table->integer('puntos')->nullable();
             $table->string('celular', 12)->nullable();
             $table->string('email', 120)->nullable();
             $table->date('fechaNacimiento')->nullable();

@@ -20,9 +20,78 @@
       <div class="row form-group">
         <label for="" class="col-md-3 col-form-label">N de RUC del cliente</label>
         <div class="col">
-          <input type="text" class="form-control" placeholder="N de RUC del cliente" maxlength="11" minlength="11" required>
+          <input type="text" v-model="client.documento"  v-on:input="findClient" class="form-control" placeholder="N de RUC del cliente" maxlength="11" minlength="11" required>
         </div>
       </div>
+      <hr>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              Nombres:
+            </td>
+            <td>
+              {{ client.nombres }}
+            </td>
+          </tr>
+           <tr>
+            <td>
+              RUC:
+            </td>
+            <td>
+              {{ client.documento }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Direccion:
+            </td>
+            <td>
+              {{ client.direccion }}
+            </td>
+          </tr>
+           <tr>
+            <td>
+              Puntos:
+            </td>
+            <td>
+              {{ client.puntos }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Celular:
+            </td>
+            <td>
+              {{ client.celular }}
+            </td>
+          </tr>
+           <tr>
+            <td>
+              Email:
+            </td>
+            <td>
+              {{ client.email }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Fecha de Nacimiento:
+            </td>
+            <td>
+              {{ client.fechaNacimiento }}
+            </td>
+          </tr>
+           <tr>
+            <td>
+              Genero:
+            </td>
+            <td>
+              {{ client.genero }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <hr>
       <div class="row">
          <label for="" class="col-md-3 col-form-label">Productos/Servicios</label>
@@ -88,15 +157,18 @@
 
 <script>
 import ItemsModal from '@/components/ItemsModal'
+
 export default {
   components: {
     ItemsModal,
   },
   data() {
     return {
+      client: {},
       invoice: {},
       items: [],
       item: {},
+      list: [],
     }
   },
   computed: {
@@ -105,6 +177,18 @@ export default {
     }
   },
   methods: {
+    findClient() {
+      console.log(this.client.documento);
+      if (this.client.documento.length == 11) {
+        this.$http.get(`/clients/${this.client.documento}/byRuc`).then(res => {
+          console.log(res);
+          this.client  = res.body.client;
+        }, res => {
+          console.log(res);
+          alert(res.body.err);
+        });
+      }
+    },
     submit() {
       console.log('enviamos');
     },

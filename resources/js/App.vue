@@ -5,7 +5,11 @@
     <div class="row">
       <sidebar/>
       <div class="col">
-        <router-view></router-view>
+        <router-view>
+
+
+          
+        </router-view>
       </div>
     </div>
   </div>
